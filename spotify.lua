@@ -1,6 +1,7 @@
--- Spotify Mac 1.0
--- Display Now Playing Track Info
+-- Name: Spotify Mac 1.1
+-- Description: Display Now Playing Track Info
 -- Author: Ray (rayps.com)
+-- Repo: https://github.com/RayPS/obs-spotify-mac/
 
 obs = obslua
 
@@ -11,14 +12,14 @@ interval = 1
 
 function update_text(source)
     local result = spotify()
-    local paused = true
+    local text = "[Spofity not running]"
     if result ~= "" then
         result = split(result, ", ")
-        paused = (result[1] == "paused")
+        local paused = (result[1] == "paused")
+        local format = paused and format_paused or format_playing
+        text = format:gsub("{n}", result[2]):gsub("{a}", result[3])
     end
 
-    local format = paused and format_paused or format_playing
-    local text = format:gsub("{n}", result[2]):gsub("{a}", result[3])
     local settings = obs.obs_data_create()
     obs.obs_data_set_string(settings, "text", text)
     obs.obs_source_update(source, settings)
@@ -82,7 +83,7 @@ function script_description()
         <h2>Spotify Mac</h2>
         <h4>Display Now Playing Track Info</h4>
         <p>{n} = Name &nbsp;&nbsp;&nbsp; {a} = Artist</p>
-        <p style="font-size: 11pt;"><i><a href="https://github.com/RayPS/obs-spotify-mac">version 1.0</a></i></p>
+        <p style="font-size: 11pt;"><i><a href="https://github.com/RayPS/obs-spotify-mac">version 1.1</a></i></p>
     </center></body></HTML>]]
 end
 

@@ -8,5 +8,3 @@ An OBS script to display Spotify track info on macOS
 {n} = Name
 {a} = Artist
 ```
-
-If Spotify App is not running, it will also display as paused
