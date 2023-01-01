@@ -1,5 +1,7 @@
 # OBS Spotify Mac
-An OBS script to display Spotify track info on macOS
+### An OBS script to display Spotify track info on macOS
+
+_(Require OBS v28 and above. See [#2](https://github.com/RayPS/obs-spotify-mac/issues/2) if you are using older version)_
 
 # Text Format
 ```
@@ -18,4 +20,7 @@ Height = 640
 # Change log
 - 1.0: Initial release
 - 1.1: Fixed something
-- 1.2: Add artwork image (#1)
+- 1.2: Add artwork image ([#1](https://github.com/RayPS/obs-spotify-mac/issues/1))
+
+---
+[Donate](https://paypal.me/rayps)
