@@ -1,7 +1,10 @@
--- Name: Spotify Mac 1.1
--- Description: Display Now Playing Track Info
--- Author: Ray (rayps.com)
--- Repo: https://github.com/RayPS/obs-spotify-mac/
+local name = "Spotify Mac"
+local version = "1.3"
+local description = "Display Now Playing Track Info"
+local usage = "{n} = Name  {a} = Artist  {b} = Line break"
+local repo = "https://github.com/RayPS/obs-spotify-mac/"
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 obs = obslua
 
@@ -19,7 +22,10 @@ function update_text(source)
         result = split(result, ", ")
         local paused = (result[1] == "paused")
         local format = paused and format_paused or format_playing
-        text = format:gsub("{n}", result[2]):gsub("{a}", result[3])
+        text = format
+            :gsub("{n}", result[2])
+            :gsub("{a}", result[3])
+            :gsub("{b}", "\n")
         artwork = result[4]
     end
 
@@ -99,10 +105,10 @@ end
 
 function script_description()
     return [[<HTML><body><center>
-        <h2>Spotify Mac</h2>
-        <h4>Display Now Playing Track Info</h4>
-        <p>{n} = Name &nbsp;&nbsp;&nbsp; {a} = Artist</p>
-        <p style="font-size: 11pt;"><i><a href="https://github.com/RayPS/obs-spotify-mac">version 1.2</a></i></p>
+        <h2>]]..name..[[</h2>
+        <h4>]]..description..[[</h4>
+        <p style="white-space: pre; font-family: menlo; font-size: 11pt">]]..usage..[[</p>
+        <p style="font-size: 11pt;"><i><a href="]]..repo..[[">version ]]..version..[[</a></i></p>
     </center></body></HTML>]]
 end
 
@@ -121,11 +127,11 @@ function script_properties()
         for _, source in ipairs(sources) do
             source_id = obs.obs_source_get_unversioned_id(source)
             if source_id == "text_gdiplus" or source_id == "text_ft2_source" then
-                local name = obs.obs_source_get_name(source)
-                obs.obs_property_list_add_string(list_text, name, name)
+                local source_name = obs.obs_source_get_name(source)
+                obs.obs_property_list_add_string(list_text, source_name, source_name)
             elseif source_id == "browser_source" then
-                local name = obs.obs_source_get_name(source)
-                obs.obs_property_list_add_string(list_browser, name, name)
+                local source_name = obs.obs_source_get_name(source)
+                obs.obs_property_list_add_string(list_browser, source_name, source_name)
             end
         end
     end
