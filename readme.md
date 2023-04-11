@@ -15,7 +15,7 @@ Width = 640
 Height = 640
 ```
 
-![screenshot](Screenshot%202023-04-11%20at%2009.56.16%402x.png)
+![screenshot](Screenshot%25202023-04-11%2520at%252010.04.55%25402x.png)
 ![screenshot](Screenshot%202022-11-24%20at%2014.41.59%402x.png)
 
 # Change log
